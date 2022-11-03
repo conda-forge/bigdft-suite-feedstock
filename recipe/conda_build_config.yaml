@@ -4,4 +4,3 @@ mpi:
 
 channel_targets:
   - conda-forge bigdft_dev
-
