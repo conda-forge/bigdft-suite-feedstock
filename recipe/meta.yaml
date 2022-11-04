@@ -1,5 +1,5 @@
 {% set name = "bigdft-suite" %}
-{% set version = "1.9.3_rc.2" %}
+{% set version = "1.9.3" %}
 {% set build = 1 %}
 {% set mpi = mpi %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://gitlab.com/l_sim/bigdft-suite/-/archive/{{ version }}/bigdft-suite-{{ version }}.tar.gz
-  md5: a756c1673c45e7e7b7be3cdf6aef81b1
+  md5: d41d8cd98f00b204e9800998ecf8427e
   patches:
     - patches/output.patch
     - patches/utils.patch
