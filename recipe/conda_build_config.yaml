@@ -1,6 +1,3 @@
 mpi:
   - openmpi
   - mpich
-
-channel_targets:
-  - conda-forge bigdft_dev
