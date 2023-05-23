@@ -42,7 +42,7 @@ requirements:
     - yaml
     - python
     - libxc <5.0
-    - ntpoly
+    - ntpoly >=3.0
     - setuptools
   run:
     - {{ mpi }}
