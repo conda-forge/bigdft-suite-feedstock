@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://gitlab.com/l_sim/bigdft-suite/-/archive/{{ version }}/bigdft-suite-{{ version }}.tar.gz
-  md5: d41d8cd98f00b204e9800998ecf8427e
+  md5: a4b40b4b35d4b5acca20fa7acb71b6dc
   patches:
     - patches/output.patch
     - patches/utils.patch
