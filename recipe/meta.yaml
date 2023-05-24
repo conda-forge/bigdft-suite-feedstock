@@ -18,7 +18,7 @@ build:
   run_exports:
      -  {{ pin_subpackage(name, max_pin='x.x') }}
   number: {{ build }}
-  skip: true  # [win or osx]
+  skip: true  # [win]
   {% set mpi_prefix = "mpi_" + mpi %}
   string: "{{ mpi_prefix }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
 
