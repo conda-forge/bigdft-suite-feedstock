@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./bigdft
+bigdft
 
 # Define the hardcoded value result
 hardcoded_value=-2.88939835588
