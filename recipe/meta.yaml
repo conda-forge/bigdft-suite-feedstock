@@ -54,6 +54,9 @@ requirements:
     - libxc <5.0
     - openssh  # [mpi == 'openmpi']
 
+channel_targets:
+  - conda-forge bigdft_dev
+
 test:
   files:
     - input.yaml
