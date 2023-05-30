@@ -56,7 +56,7 @@ requirements:
 
 test:
   files:
-    - test.py
+    - input.yaml
 
 about:
   home: https://bigdft.org
