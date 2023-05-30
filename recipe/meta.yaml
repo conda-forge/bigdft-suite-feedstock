@@ -29,7 +29,7 @@ requirements:
     - {{ compiler('fortran') }}
     - cmake
     - llvm-openmp  # [osx]
-    - libcxx # [osx]
+    - libcxx  # [osx]
     - libgomp  # [linux]
     - autoconf
     - automake
