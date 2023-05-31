@@ -47,10 +47,6 @@ requirements:
     - setuptools
   run:
     - {{ mpi }}
-    - python
-    - scipy
-    - numpy
-    - pyyaml
     - libxc <5.0
     - openssh  # [mpi == 'openmpi']
 
