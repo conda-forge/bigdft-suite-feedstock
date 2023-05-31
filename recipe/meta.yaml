@@ -41,16 +41,11 @@ requirements:
     - libblas
     - liblapack
     - yaml
-    - python
     - libxc <5.0
     - ntpoly >=3.0
     - setuptools
   run:
     - {{ mpi }}
-    - python
-    - scipy
-    - numpy
-    - pyyaml
     - libxc <5.0
     - openssh  # [mpi == 'openmpi']
 
