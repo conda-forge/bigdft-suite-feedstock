@@ -36,12 +36,12 @@ requirements:
     - binutils
     - make
     - pip
+    - python
   host:
     - {{ mpi }}
     - libblas
     - liblapack
     - yaml
-    - python
     - libxc <5.0
     - ntpoly >=3.0
     - setuptools
