@@ -5,5 +5,3 @@ mpi:
 channel_targets:
   - conda-forge bigdft_dev
 
-SDKROOT:
-  - /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
