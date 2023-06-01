@@ -28,7 +28,8 @@ def env_configuration():
     env["CPPFLAGS"] = environ["CPPFLAGS"]
     env["CPPFLAGS"] += " -I" + join(prefix, "include", "futile")
     env["FCFLAGS"] = "-O2 -fopenmp -fallow-argument-mismatch "
-    env["FCFLAGS"] += environ["FORTRANFLAGS"] + " -ldl"
+    env["FCFLAGS"] += environ["FORTRANFLAGS"]
+    env["FCFLAGS"] += " -I" + join(environ["PREFIX"], "include") + " -ldl"
     env["--with-ext-linalg"] = "-llapack -lblas"
     env["--with-yaml-path"] = prefix
     if linux:
