@@ -36,8 +36,10 @@ def env_configuration():
     else:
         env["LIBS"] = "-lc++"
     #if environ["CONDA_BUILD_CROSS_COMPILATION"] == 1:
-    env["--build"] = environ["BUILD"]
-    env["--host"] = environ["HOST"]
+    env["--build"] = environ["HOST"]
+    env["--host"] = environ["BUILD"]
+    #env["--build"] = environ["BUILD"]
+    #env["--host"] = environ["HOST"]
     return " ".join(['"' + x + '=' + y + '"' for x, y in env.items()])
 
 #here follow the configuration instructions for the modules built
