@@ -13,14 +13,14 @@ def env_configuration():
     from os import environ
     from os.path import join
 
-    if "linux" in environ["CC_FOR_BUILD"]:
+    if "linux" in environ["CC"]:
         linux = True
     else:
         linux = False
     env = {}
     env["FC"] = "mpifort"
-    env["CC"] = environ["CC_FOR_BUILD"]
-    env["CXX"] = environ["CXX_FOR_BUILD"]
+    env["CC"] = environ["CC"]
+    env["CXX"] = environ["CXX"]
     if linux:
         env["CFLAGS"] = "-O2 -DCONDA " + environ["CFLAGS"] + " -ldl"
     else:

@@ -36,8 +36,8 @@ requirements:
     - binutils
     - make
     - pip
-    - gnuconfig
-    - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
+    - gnuconfig  # [unix]
+    #- {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
     - {{ mpi }}
     - libblas

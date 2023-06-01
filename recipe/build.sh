@@ -5,12 +5,12 @@ cd build
 
 # Autotools stuff
 export JHBUILD_RUN_AS_ROOT="please do it"
-cp $BUILD_PREFIX/share/gnuconfig/config.* ../futile/config/
 python ../Installer.py -y autogen
+cp $BUILD_PREFIX/share/gnuconfig/config.* ../futile/config/
 
 # Run Installer
 python ../Installer.py -y build -f ../conda.rc
 
-# Environment variables
+# Copy Executable
 cp install/bin/bigdft $PREFIX/bin/
 
