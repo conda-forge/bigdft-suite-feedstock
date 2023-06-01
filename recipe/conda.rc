@@ -13,14 +13,14 @@ def env_configuration():
     from os import environ
     from os.path import join
 
-    if "linux" in environ["CC_FOR_BUILD"]:
+    if "linux" in environ["CC"]:
         linux = True
     else:
         linux = False
     env = {}
     env["FC"] = "mpifort"
-    env["CC"] = environ["CC_FOR_BUILD"]
-    env["CXX"] = environ["CXX_FOR_BUILD"]
+    env["CC"] = environ["CC"]
+    env["CXX"] = environ["CXX"]
     if linux:
         env["CFLAGS"] = "-O2 -DCONDA " + environ["CFLAGS"] + " -ldl"
     else:
@@ -28,13 +28,16 @@ def env_configuration():
     env["CPPFLAGS"] = environ["CPPFLAGS"]
     env["CPPFLAGS"] += " -I" + join(prefix, "include", "futile")
     env["FCFLAGS"] = "-O2 -fopenmp -fallow-argument-mismatch "
-    env["FCFLAGS"] += environ["FORTRANFLAGS"] + " -ldl"
+    env["FCFLAGS"] += environ["FORTRANFLAGS"]
+    env["FCFLAGS"] += " -I" + join(environ["PREFIX"], "include") + " -ldl"
     env["--with-ext-linalg"] = "-llapack -lblas"
     env["--with-yaml-path"] = prefix
     if linux:
         env["LIBS"] = "-lstdc++"
     else:
         env["LIBS"] = "-lc++"
+    env["--build"] = environ["BUILD"]
+    env["--host"] = environ["HOST"]
     return " ".join(['"' + x + '=' + y + '"' for x, y in env.items()])
 
 #here follow the configuration instructions for the modules built

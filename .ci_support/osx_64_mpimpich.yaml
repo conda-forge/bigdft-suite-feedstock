@@ -7,7 +7,7 @@ c_compiler_version:
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge bigdft_dev
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
@@ -30,12 +30,6 @@ mpich:
 - '4'
 openmpi:
 - '4'
-pin_run_as_build:
-  python:
-    min_pin: x.x
-    max_pin: x.x
-python:
-- 3.11.* *_cpython
 target_platform:
 - osx-64
 zip_keys:
