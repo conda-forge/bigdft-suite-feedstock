@@ -37,7 +37,7 @@ requirements:
     - make
     - pip
     - gnuconfig  # [unix]
-    #- {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
+    - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
     - {{ mpi }}
     - libblas
