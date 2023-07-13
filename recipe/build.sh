@@ -1,31 +1,25 @@
 # Files
 cp $RECIPE_DIR/conda.rc .
+tar xvf tarballs/GaIn-1.0.tar.gz
 
-# Build
-export JHBUILD_RUN_AS_ROOT="please do it"
 mkdir build
 cd build
+
+# Autotools stuff
+export JHBUILD_RUN_AS_ROOT="please do it"
 python ../Installer.py -y autogen
+cp $BUILD_PREFIX/share/gnuconfig/config.* ../futile/config/
+cp $BUILD_PREFIX/share/gnuconfig/config.* ../GaIn-1.0/
+
+# Make sure the Fortran compiler is correct for openmpi
+if [ "$mpi" == "openmpi" ]
+then
+    export OMPI_FC=$FC
+fi
+
+# Run Installer
 python ../Installer.py -y build -f ../conda.rc
 
-# Environment variables
-python $RECIPE_DIR/backup_variables.py $PREFIX/bin/bigdftvars.sh
-cat $PREFIX/bin/*conda.sh
+# Copy Executable
+cp install/bin/bigdft $PREFIX/bin/
 
-# Activate script
-mkdir -p "${PREFIX}/etc/conda/activate.d"
-cp "${RECIPE_DIR}/activate.sh" "${PREFIX}/etc/conda/activate.d/${PKG_NAME}_activate.sh"
-mkdir -p "${PREFIX}/etc/conda/deactivate.d"
-cp "${RECIPE_DIR}/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/${PKG_NAME}_deactivate.sh"
-
-# Remove Extra Files
-rm -r $PREFIX/_jhbuild
-rm $PREFIX/lib/libabinit.a
-rm $PREFIX/lib/libatlab-1.a
-rm $PREFIX/lib/libbigdft-1.a
-rm $PREFIX/lib/libCheSS-1.a
-rm $PREFIX/lib/libdicts.a
-rm $PREFIX/lib/libfutile-1.a
-rm $PREFIX/lib/libGaIn.a
-rm $PREFIX/lib/liborbs.a
-rm $PREFIX/lib/libPSolver-1.a

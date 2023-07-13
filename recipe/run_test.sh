@@ -1,26 +1,25 @@
-set -ex
+#!/bin/bash
 
-# Check for expected libraries ABI
-test -f ${PREFIX}/lib/bigdft/libvol.so
-test -f ${PREFIX}/lib/libatlab-1.so.0
-test -f ${PREFIX}/lib/libbigdft-1.so.9
-test -f ${PREFIX}/lib/libCheSS-1.so.2
-test -f ${PREFIX}/lib/libfmalloc-1.so.9
-test -f ${PREFIX}/lib/libfutile-1.so.9
-test -f ${PREFIX}/lib/libPSolver-1.so.9
+bigdft
 
-# Check for header
-test -f ${PREFIX}/include/bigdft.h
-test -f ${PREFIX}/include/futile/tree.h
-test -f ${PREFIX}/include/atlab/box.h
+# Define the hardcoded value result
+hardcoded_value=-2.88939835588
 
-# Setup the environment
-source bigdftvars.sh
+# Grep for the line with "Energy (Hartree)"
+value=$(grep "Energy (Hartree)" log.yaml | awk '{print $NF}')
 
-# Check a few of the useful tools
-bigdft -h
-bigdft-tool -h
-bader -h
+# If value is not present, exit with an error
+if [ -z "$value" ]; then
+    echo "Error: Could not find line energy"
+    exit 1
+fi
 
-# Check that PyBigDFT is Working
-python test.py
+# Calculate the absolute difference
+difference=$(echo "$value - $hardcoded_value" | bc -l | awk '{if ($1<0) print -$1; else print $1}')
+
+# If the difference is greater than a threshold, raise an error
+if (( $(echo "$difference > 1e-6" | bc -l) )); then
+    echo "Error: Computed energy difference $difference is greater than 1e-6"
+    exit 1
+fi
+

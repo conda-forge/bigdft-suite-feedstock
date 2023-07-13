@@ -1,5 +1,5 @@
 {% set name = "bigdft-suite" %}
-{% set version = "1.9.3" %}
+{% set version = "1.9.4" %}
 {% set build = 0 %}
 {% set mpi = mpi %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://gitlab.com/l_sim/bigdft-suite/-/archive/{{ version }}/bigdft-suite-{{ version }}.tar.gz
-  md5: f5bdb3b51bf39b2e6995629290a0ff39
+  md5: eaeaf9f8125a15b05d6eb8e12a314a85
   patches:
     - patches/output.patch
     - patches/utils.patch
@@ -18,7 +18,7 @@ build:
   run_exports:
      -  {{ pin_subpackage(name, max_pin='x.x') }}
   number: {{ build }}
-  skip: true  # [win or osx]
+  skip: true  # [win]
   {% set mpi_prefix = "mpi_" + mpi %}
   string: "{{ mpi_prefix }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}"
 
@@ -29,33 +29,31 @@ requirements:
     - {{ compiler('fortran') }}
     - cmake
     - llvm-openmp  # [osx]
+    - libcxx  # [osx]
     - libgomp  # [linux]
     - autoconf
     - automake
     - binutils
     - make
     - pip
+    - gnuconfig  # [unix]
+    - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
     - {{ mpi }}
     - libblas
     - liblapack
     - yaml
-    - python
     - libxc <5.0
-    - ntpoly
+    - ntpoly >=3.0
     - setuptools
   run:
     - {{ mpi }}
-    - python
-    - scipy
-    - numpy
-    - pyyaml
     - libxc <5.0
     - openssh  # [mpi == 'openmpi']
 
 test:
   files:
-    - test.py
+    - input.yaml
 
 about:
   home: https://bigdft.org
@@ -70,7 +68,6 @@ about:
     - licenses/GaIN.copying
     - licenses/libabinit.copying
     - licenses/psolver.copying
-    - licenses/pybigdft.copying
     - licenses/spred.copying
   summary: Density Functional Theory calculations based on wavelets
   doc_url: https://l_sim.gitlab.io/bigdft-suite/
