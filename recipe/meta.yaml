@@ -13,6 +13,7 @@ source:
   patches:
     - patches/output.patch
     - patches/utils.patch
+    - patches/jhbuild.patch
 
 build:
   run_exports:
