@@ -36,8 +36,7 @@ requirements:
     - automake
     - binutils
     - make
-    - distutils
-    - python ==3.11
+    - setuptools
     - pip
     - gnuconfig  # [unix]
     - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
