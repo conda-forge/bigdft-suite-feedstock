@@ -35,7 +35,9 @@ requirements:
     - automake
     - binutils
     - make
+    - python 3.13
     - pip
+    - setuptools
     - gnuconfig  # [unix]
     - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
