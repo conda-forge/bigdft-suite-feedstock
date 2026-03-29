@@ -1,5 +1,5 @@
 {% set name = "bigdft-suite" %}
-{% set version = "1.9.5" %}
+{% set version = "1.9.6" %}
 {% set build = 1 %}
 {% set mpi = mpi %}
 
@@ -9,14 +9,14 @@ package:
 
 source:
   url: https://gitlab.com/l_sim/bigdft-suite/-/archive/{{ version }}/bigdft-suite-{{ version }}.tar.gz
-  md5: 789195df439371c6e6808090476cc85b
+  md5: 45b70a3ea1ef47c97cf139e4c2869b8f
   patches:
     - patches/output.patch
-    - patches/utils.patch
+    - patches/jhbuild-pkgutil.patch
 
 build:
   run_exports:
-     -  {{ pin_subpackage(name, max_pin='x.x') }}
+    - {{ pin_subpackage(name, max_pin='x.x') }}
   number: {{ build }}
   skip: true  # [win]
   {% set mpi_prefix = "mpi_" + mpi %}
@@ -36,7 +36,9 @@ requirements:
     - automake
     - binutils
     - make
+    - python
     - pip
+    - setuptools
     - gnuconfig  # [unix]
     - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
